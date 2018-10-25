@@ -16,9 +16,13 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "precommit": "pretty-quick --staged",
-    "prepush": "react-scripts-ts test --env=jsdom"
+    "eject": "react-scripts-ts eject"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "pretty-quick --staged",
+      "prepush": "cross-env CI=true react-app-rewired test"
+    }
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.14",
