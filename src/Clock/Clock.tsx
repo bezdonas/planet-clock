@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface ClockProps {
-  test?: String;
+  test?: Number;
 }
 
 export default class Clock extends React.PureComponent<ClockProps, String> {
