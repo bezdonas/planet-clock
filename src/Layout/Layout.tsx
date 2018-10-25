@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 
-class Layout extends React.Component {
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export default class Layout extends React.PureComponent<LayoutProps> {
   public render() {
     return this.props.children;
   }
 }
-
-export default Layout;

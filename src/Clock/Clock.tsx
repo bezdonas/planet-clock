@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-class Clock extends React.Component {
-  public render() {
-    return <div> i am clock! </div>;
-  }
+export interface ClockProps {
+  test?: Number;
 }
 
-export default Clock;
+export default class Clock extends React.PureComponent<ClockProps, String> {
+  public render() {
+    return <div>I am clock!</div>;
+  }
+}
