@@ -20,8 +20,8 @@
   },
   "husky": {
     "hooks": {
-      "precommit": "pretty-quick --staged",
-      "prepush": "cross-env CI=true react-app-rewired test"
+      "pre-commit": "pretty-quick --staged",
+      "pre-push": "cross-env CI=true react-app-rewired test"
     }
   },
   "devDependencies": {
