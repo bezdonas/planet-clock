@@ -1,0 +1,8 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "prettier.singleQuote": true,
+  "git.ignoreLimitWarning": true,
+  "prettier.trailingComma": "es5"
+}
