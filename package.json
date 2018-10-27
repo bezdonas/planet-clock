@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jsdom": "^12.2.0",
-    "@types/moment": "^2.13.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "jest-styled-components": "^6.2.2",
@@ -30,13 +28,14 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged",
-      "pre-push": "cross-env CI=true --env=jsdom react-scripts-ts test"
+      "pre-push": "cross-env CI=true react-scripts-ts test --env=jsdom"
     }
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.14",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.7",
+    "@types/moment": "^2.13.0",
     "@types/node": "^10.12.0",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
