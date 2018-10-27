@@ -4,6 +4,11 @@ import Clock from '../Clock';
 import { degPerSecond, degPerMinute, degPerHour } from '../Degrees';
 import 'jest-styled-components';
 
+import jsdom from 'jsdom';
+const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.document = doc;
+global.window = doc.defaultView;
+
 describe('Check starting arrow positions', () => {
   it('time 3:12:46', () => {
     const props = {
