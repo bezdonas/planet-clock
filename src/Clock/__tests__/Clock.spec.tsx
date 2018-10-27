@@ -1,10 +1,10 @@
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import Clock from '../Clock';
 import { degPerSecond, degPerMinute, degPerHour } from '../Degrees';
 import 'jest-styled-components';
 
-describe('Check arrow positions', () => {
+describe('Check starting arrow positions', () => {
   it('time 3:12:46', () => {
     const props = {
       secondDuration: 1000,
@@ -72,5 +72,50 @@ describe('Check arrow positions', () => {
       'transform',
       `rotate(${degPerSecond * props.second}deg)`
     );
+  });
+});
+
+describe('getDurations method', () => {
+  it('returns expected data for normal secondDuration', () => {
+    const props = {
+      secondDuration: 1000,
+      hour: 0,
+      minute: 0,
+      second: 0,
+    };
+    const wrapper = shallow(<Clock {...props} />);
+    const instance = wrapper.instance() as Clock;
+
+    expect(instance.getDurations(1000)).toEqual({
+      minuteDuration: 60 * 1000,
+      hourDuration: 60 * 60 * 1000,
+      dayDuration: 60 * 60 * 12 * 1000,
+    });
+  });
+
+  it('returns expected data for unnormal secondDuration', () => {
+    const props = {
+      secondDuration: 300,
+      hour: 0,
+      minute: 0,
+      second: 0,
+    };
+    const wrapper = shallow(<Clock {...props} />);
+    const instance = wrapper.instance() as Clock;
+
+    expect(instance.getDurations(300)).toEqual({
+      minuteDuration: 60 * 300,
+      hourDuration: 60 * 60 * 300,
+      dayDuration: 60 * 60 * 12 * 300,
+    });
+  });
+});
+
+describe('Check dynamic arrow positions', () => {
+  it('stub', () => {
+    // TODO: Since animation is done inside css
+    // checking this stuff is not so trivial,
+    // have to research/come up with smth
+    expect(true).toBe(true);
   });
 });

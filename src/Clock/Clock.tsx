@@ -1,100 +1,17 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, StyledComponentClass } from 'styled-components';
 import {
   degPerCircle,
   degPerSecond,
   degPerMinute,
   degPerHour,
 } from './Degrees';
-
-const clockDiameter = 200;
-const clockColor = 'rgb(255, 255, 255)';
-
-const StyledClockWrapper = styled.div`
-  margin: 20px;
-  display: inline-block;
-  color: ${clockColor};
-  .backdrop-outer {
-    padding: 10px;
-    border: 2px solid ${clockColor};
-    border-radius: 50%;
-  }
-  .backdrop-inner {
-    position: relative;
-    width: ${clockDiameter}px;
-    height: ${clockDiameter}px;
-    :after {
-      // center dot
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin: -6px 0 0 -6px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: ${clockColor};
-    }
-  }
-`;
-
-const StyledArrow = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-`;
-
-const StyledHour = styled(StyledArrow)`
-  width: 8px;
-  margin-left: -4px;
-  height: ${clockDiameter / 3}px;
-  padding-bottom: ${clockDiameter / 3}px;
-  top: ${clockDiameter / 6}px;
-  :after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 50%;
-    left: 0;
-    right: 0;
-    background: ${clockColor};
-    border-radius: 25%;
-  }
-`;
-
-const StyledMinute = styled(StyledArrow)`
-  width: 4px;
-  margin-left: -2px;
-  height: ${clockDiameter / 2}px;
-  padding-bottom: ${clockDiameter / 2}px;
-  :after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 50%;
-    left: 0;
-    right: 0;
-    background: ${clockColor};
-    border-radius: 25%;
-  }
-`;
-
-const StyledSecond = styled(StyledArrow)`
-  width: 2px;
-  margin-left: -1px;
-  height: ${clockDiameter / 2}px;
-  padding-bottom: ${clockDiameter / 2}px;
-  :after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 40%;
-    left: 0;
-    right: 0;
-    background: ${clockColor};
-    border-radius: 25%;
-  }
-`;
+import {
+  StyledClockWrapper,
+  StyledHour,
+  StyledMinute,
+  StyledSecond,
+} from './ClockStyles';
 
 export interface ClockProps {
   secondDuration: number;
@@ -104,55 +21,76 @@ export interface ClockProps {
 }
 
 export default class Clock extends React.PureComponent<ClockProps> {
-  public render() {
-    const { hour, minute, second, secondDuration } = this.props;
-    const startingHourDeg: number = hour * degPerHour;
-    const startingMinuteDeg: number = minute * degPerMinute;
-    const startingSecondDeg: number = second * degPerSecond;
+  getRotateAnimation = (from: number, to: number) => {
+    return keyframes`
+      from {
+        transform: rotate(${from}deg);
+      }
+      to {
+        transform: rotate(${to}deg);
+      }
+    `;
+  };
+
+  getAnimatedArrowComponent = (
+    styledArrow: StyledComponentClass<{}, {}>,
+    startingDeg: number,
+    duration: number,
+    steps?: number
+  ) => {
+    const rotateSecond = this.getRotateAnimation(
+      startingDeg,
+      startingDeg + degPerCircle
+    );
+    const stepsString = steps ? `steps(${steps})` : '';
+    return styled(styledArrow)`
+      transform: rotate(${startingDeg}deg);
+      animation: ${rotateSecond} ${duration}ms ${stepsString} infinite;
+    `;
+  };
+
+  getDurations = (secondDuration: number) => {
     const minuteDuration: number = secondDuration * 60;
     const hourDuration: number = minuteDuration * 60;
     const dayDuration: number = hourDuration * 12;
+    return {
+      minuteDuration,
+      hourDuration,
+      dayDuration,
+    };
+  };
 
-    const rotateHour = keyframes`
-      from {
-        transform: rotate(${startingHourDeg}deg);
-      }
-      to {
-        transform: rotate(${startingHourDeg + degPerCircle}deg);
-      }
-    `;
-    const rotateMinute = keyframes`
-      from {
-        transform: rotate(${startingMinuteDeg}deg);
-      }
-      to {
-        transform: rotate(${startingMinuteDeg + degPerCircle}deg);
-      }
-    `;
-    const rotateSecond = keyframes`
-      from {
-        transform: rotate(${startingHourDeg}deg);
-      }
-      to {
-        transform: rotate(${startingHourDeg + degPerCircle}deg);
-      }
-    `;
+  public render() {
+    const { hour, minute, second, secondDuration } = this.props;
+    const { minuteDuration, hourDuration, dayDuration } = this.getDurations(
+      secondDuration
+    );
 
-    const AnimatedStyledHour = styled(StyledHour)`
-      transform: rotate(${startingHourDeg}deg);
-      animation: ${rotateHour} ${dayDuration}ms infinite;
-    `;
-    AnimatedStyledHour.displayName = 'AnimatedStyledHour'; // for tests
-    const AnimatedStyledMinute = styled(StyledMinute)`
-      transform: rotate(${startingMinuteDeg}deg);
-      animation: ${rotateMinute} ${hourDuration}ms infinite;
-    `;
-    AnimatedStyledMinute.displayName = 'AnimatedStyledMinute'; // for tests
-    const AnimatedStyledSecond = styled(StyledSecond)`
-      transform: rotate(${startingSecondDeg}deg);
-      animation: ${rotateSecond} ${minuteDuration}ms steps(60) infinite;
-    `;
+    const startingSecondDeg: number = second * degPerSecond;
+    const secondStepsPerMinute = 60;
+    const AnimatedStyledSecond = this.getAnimatedArrowComponent(
+      StyledSecond,
+      startingSecondDeg,
+      minuteDuration,
+      secondStepsPerMinute
+    );
     AnimatedStyledSecond.displayName = 'AnimatedStyledSecond'; // for tests
+
+    const startingMinuteDeg: number = minute * degPerMinute;
+    const AnimatedStyledMinute = this.getAnimatedArrowComponent(
+      StyledMinute,
+      startingMinuteDeg,
+      hourDuration
+    );
+    AnimatedStyledMinute.displayName = 'AnimatedStyledMinute'; // for tests
+
+    const startingHourDeg: number = hour * degPerHour;
+    const AnimatedStyledHour = this.getAnimatedArrowComponent(
+      StyledHour,
+      startingHourDeg,
+      dayDuration
+    );
+    AnimatedStyledHour.displayName = 'AnimatedStyledHour'; // for tests
 
     return (
       <StyledClockWrapper>
