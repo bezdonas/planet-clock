@@ -6,6 +6,7 @@
     "@types/moment": "^2.13.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "jest-styled-components": "^6.2.2",
     "moment": "^2.22.2",
     "prettier": "^1.14.3",
     "react": "^16.6.0",
