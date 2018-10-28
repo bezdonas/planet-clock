@@ -1,7 +1,3 @@
-export const secsPerMin: number = 60;
-export const minPerHour: number = 60;
-export const hourPerDay: number = 12;
-
 export const secsPerCircle: number = 60;
 export const minsPerCircle: number = 60;
 export const hoursPerCircle: number = 12;

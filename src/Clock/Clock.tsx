@@ -11,6 +11,7 @@ import {
   degsPerHour,
   secsPerCircle,
   minsPerCircle,
+  hoursPerCircle,
 } from './ClockConstants';
 import {
   StyledClockWrapper,
@@ -21,9 +22,9 @@ import {
 import { IClock } from 'src/types/Clock';
 
 export const getDurations = (secondDuration: number): IClock.Durations => {
-  const minuteDuration: number = secondDuration * 60;
-  const hourDuration: number = minuteDuration * 60;
-  const dayDuration: number = hourDuration * 12;
+  const minuteDuration: number = secondDuration * secsPerCircle;
+  const hourDuration: number = minuteDuration * minsPerCircle;
+  const dayDuration: number = hourDuration * hoursPerCircle;
   return {
     minute: minuteDuration,
     hour: hourDuration,
@@ -86,7 +87,7 @@ const generateAnimatedArrows = (
       startingPositions.second + degsPerCircle
     ),
     duration: durations.minute,
-    steps: 60,
+    steps: secsPerCircle,
   });
   AnimatedStyledSecond.displayName = 'AnimatedStyledSecond'; // for tests
 
