@@ -1,17 +1,93 @@
 import React from 'react';
-import styled, { keyframes, StyledComponentClass } from 'styled-components';
+import styled, {
+  keyframes,
+  Keyframes,
+  StyledComponentClass,
+} from 'styled-components';
 import {
-  degPerCircle,
-  degPerSecond,
-  degPerMinute,
-  degPerHour,
-} from './Degrees';
+  degsPerCircle,
+  degsPerSec,
+  degsPerMin,
+  degsPerHour,
+  secsPerCircle,
+  minsPerCircle,
+} from './ClockConstants';
 import {
   StyledClockWrapper,
   StyledHour,
   StyledMinute,
   StyledSecond,
 } from './ClockStyles';
+
+// TODO: refactor interfaces for functions
+export const getRotateAnimation = (from: number, to: number): Keyframes => {
+  return keyframes`
+    from {
+      transform: rotate(${from}deg);
+    }
+    to {
+      transform: rotate(${to}deg);
+    }
+  `;
+};
+
+export const positionArrowComponent = (
+  styledArrow: StyledComponentClass<{}, {}>,
+  position: number
+): StyledComponentClass<{}, {}> => {
+  return styled(styledArrow)`
+    transform: rotate(${position}deg);
+  `;
+};
+
+interface AnimateArrowComponentArgs {
+  positionedArrow: StyledComponentClass<{}, {}>;
+  rotateAnimation: Keyframes;
+  duration: number;
+  steps?: number;
+}
+export const animateArrowComponent = (
+  settings: AnimateArrowComponentArgs
+): StyledComponentClass<{}, {}> => {
+  const { positionedArrow, rotateAnimation, duration, steps } = settings;
+  const stepsString = steps ? `steps(${steps})` : '';
+  return styled(positionedArrow)`
+    animation: ${rotateAnimation} ${duration}ms ${stepsString} infinite;
+  `;
+};
+
+interface GetDurationsResult {
+  minute: number;
+  hour: number;
+  day: number;
+}
+export const getDurations = (secondDuration: number): GetDurationsResult => {
+  const minuteDuration: number = secondDuration * 60;
+  const hourDuration: number = minuteDuration * 60;
+  const dayDuration: number = hourDuration * 12;
+  return {
+    minute: minuteDuration,
+    hour: hourDuration,
+    day: dayDuration,
+  };
+};
+
+interface TimeToDegreesResult {
+  second: number;
+  minute: number;
+  hour: number;
+}
+export const timeToDegrees = (
+  hour: number,
+  minute: number,
+  second: number
+): TimeToDegreesResult => {
+  return {
+    second: Math.round(degsPerSec * second),
+    minute: Math.round(degsPerMin * (minute + second / secsPerCircle)),
+    hour: Math.round(degsPerHour * (hour + minute / minsPerCircle)),
+  };
+};
 
 export interface ClockProps {
   secondDuration: number;
@@ -21,76 +97,50 @@ export interface ClockProps {
 }
 
 export default class Clock extends React.PureComponent<ClockProps> {
-  getRotateAnimation = (from: number, to: number) => {
-    return keyframes`
-      from {
-        transform: rotate(${from}deg);
-      }
-      to {
-        transform: rotate(${to}deg);
-      }
-    `;
-  };
-
-  getAnimatedArrowComponent = (
-    styledArrow: StyledComponentClass<{}, {}>,
-    startingDeg: number,
-    duration: number,
-    steps?: number
-  ) => {
-    const rotateSecond = this.getRotateAnimation(
-      startingDeg,
-      startingDeg + degPerCircle
-    );
-    const stepsString = steps ? `steps(${steps})` : '';
-    return styled(styledArrow)`
-      transform: rotate(${startingDeg}deg);
-      animation: ${rotateSecond} ${duration}ms ${stepsString} infinite;
-    `;
-  };
-
-  getDurations = (secondDuration: number) => {
-    const minuteDuration: number = secondDuration * 60;
-    const hourDuration: number = minuteDuration * 60;
-    const dayDuration: number = hourDuration * 12;
-    return {
-      minuteDuration,
-      hourDuration,
-      dayDuration,
-    };
-  };
-
   public render() {
     const { hour, minute, second, secondDuration } = this.props;
-    const { minuteDuration, hourDuration, dayDuration } = this.getDurations(
-      secondDuration
-    );
+    const durations = getDurations(secondDuration);
+    const startingPositions = timeToDegrees(hour, minute, second);
 
-    const startingSecondDeg: number = second * degPerSecond;
-    const secondStepsPerMinute = 60;
-    const AnimatedStyledSecond = this.getAnimatedArrowComponent(
-      StyledSecond,
-      startingSecondDeg,
-      minuteDuration,
-      secondStepsPerMinute
-    );
-    AnimatedStyledSecond.displayName = 'AnimatedStyledSecond'; // for tests
+    const AnimatedStyledSecond = animateArrowComponent({
+      positionedArrow: positionArrowComponent(
+        StyledSecond,
+        startingPositions.second
+      ),
+      rotateAnimation: getRotateAnimation(
+        startingPositions.second,
+        startingPositions.second + degsPerCircle
+      ),
+      duration: durations.minute,
+      steps: secsPerCircle,
+    });
+    AnimatedStyledSecond.displayName = 'AnimatedStyledSecond';
 
-    const startingMinuteDeg: number = minute * degPerMinute;
-    const AnimatedStyledMinute = this.getAnimatedArrowComponent(
-      StyledMinute,
-      startingMinuteDeg,
-      hourDuration
-    );
-    AnimatedStyledMinute.displayName = 'AnimatedStyledMinute'; // for tests
+    const AnimatedStyledMinute = animateArrowComponent({
+      positionedArrow: positionArrowComponent(
+        StyledMinute,
+        startingPositions.minute
+      ),
+      rotateAnimation: getRotateAnimation(
+        startingPositions.minute,
+        startingPositions.minute + degsPerCircle
+      ),
+      duration: durations.hour,
+    });
+    AnimatedStyledMinute.displayName = 'AnimatedStyledMinute';
 
-    const startingHourDeg: number = hour * degPerHour;
-    const AnimatedStyledHour = this.getAnimatedArrowComponent(
-      StyledHour,
-      startingHourDeg,
-      dayDuration
-    );
-    AnimatedStyledHour.displayName = 'AnimatedStyledHour'; // for tests
+    const AnimatedStyledHour = animateArrowComponent({
+      positionedArrow: positionArrowComponent(
+        StyledHour,
+        startingPositions.hour
+      ),
+      rotateAnimation: getRotateAnimation(
+        startingPositions.hour,
+        startingPositions.hour + degsPerCircle
+      ),
+      duration: durations.day,
+    });
+    AnimatedStyledHour.displayName = 'AnimatedStyledHour';
 
     return (
       <StyledClockWrapper>

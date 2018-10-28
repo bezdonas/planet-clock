@@ -31,7 +31,7 @@ export default class ClockContainer extends React.PureComponent {
           second={this.getCurrentSecond()}
         />
         <Clock
-          secondDuration={300}
+          secondDuration={100}
           hour={this.getCurrentHour()}
           minute={this.getCurrentMinute()}
           second={this.getCurrentSecond()}
