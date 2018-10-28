@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Clock from './Clock/Clock';
+import ClockContainer from './Clock/ClockContainer';
 import Layout from './Layout/Layout';
 
 class App extends React.Component {
   public render() {
     return (
       <Layout>
-        <Clock />
+        <ClockContainer />
       </Layout>
     );
   }
