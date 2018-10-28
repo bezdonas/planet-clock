@@ -19,10 +19,4 @@ export namespace IClock {
     duration: number;
     steps?: number;
   }
-
-  export interface AnimatedArrows {
-    AnimatedStyledSecond: StyledComponentClass<{}, {}>;
-    AnimatedStyledMinute: StyledComponentClass<{}, {}>;
-    AnimatedStyledHour: StyledComponentClass<{}, {}>;
-  }
 }

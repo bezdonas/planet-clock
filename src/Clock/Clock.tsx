@@ -1,11 +1,8 @@
 import React from 'react';
-import styled, {
-  keyframes,
-  Keyframes,
-  StyledComponentClass,
-} from 'styled-components';
+import styled from 'styled-components';
 import {
-  degsPerCircle,
+  clockColor,
+  clockDiameter,
   degsPerSec,
   degsPerMin,
   degsPerHour,
@@ -13,13 +10,37 @@ import {
   minsPerCircle,
   hoursPerCircle,
 } from './ClockConstants';
-import {
-  StyledClockWrapper,
-  StyledHour,
-  StyledMinute,
-  StyledSecond,
-} from './ClockStyles';
+import SecondArrow from './Arrows/SecondArrow';
+import MinuteArrow from './Arrows/MinuteArrow';
+import HourArrow from './Arrows/HourArrow';
 import { IClock } from 'src/types/Clock';
+
+const StyledClockWrapper = styled.div`
+  margin: 20px;
+  display: inline-block;
+  color: ${clockColor};
+  .backdrop-outer {
+    padding: 10px;
+    border: 2px solid ${clockColor};
+    border-radius: 50%;
+  }
+  .backdrop-inner {
+    position: relative;
+    width: ${clockDiameter}px;
+    height: ${clockDiameter}px;
+    :after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -6px 0 0 -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: ${clockColor};
+    }
+  }
+`;
 
 export const getDurations = (secondDuration: number): IClock.Durations => {
   const minuteDuration: number = secondDuration * secsPerCircle;
@@ -44,83 +65,6 @@ export const timeToDegrees = (
   };
 };
 
-const getRotateAnimation = (from: number, to: number): Keyframes => {
-  return keyframes`
-    from {
-      transform: rotate(${from}deg);
-    }
-    to {
-      transform: rotate(${to}deg);
-    }
-  `;
-};
-
-const positionArrowComponent = (
-  styledArrow: StyledComponentClass<{}, {}>,
-  position: number
-): StyledComponentClass<{}, {}> =>
-  styled(styledArrow)`
-    transform: rotate(${position}deg);
-  `;
-
-const animateArrowComponent = (
-  settings: IClock.AnimateArrowComponentArgs
-): StyledComponentClass<{}, {}> => {
-  const { positionedArrow, rotateAnimation, duration, steps } = settings;
-  const stepsSetting = steps ? `steps(${steps})` : '';
-  return styled(positionedArrow)`
-    animation: ${rotateAnimation} ${duration}ms ${stepsSetting} infinite;
-  `;
-};
-
-const generateAnimatedArrows = (
-  startingPositions: IClock.Time,
-  durations: IClock.Durations
-): IClock.AnimatedArrows => {
-  const AnimatedStyledSecond = animateArrowComponent({
-    positionedArrow: positionArrowComponent(
-      StyledSecond,
-      startingPositions.second
-    ),
-    rotateAnimation: getRotateAnimation(
-      startingPositions.second,
-      startingPositions.second + degsPerCircle
-    ),
-    duration: durations.minute,
-    steps: secsPerCircle,
-  });
-  AnimatedStyledSecond.displayName = 'AnimatedStyledSecond'; // for tests
-
-  const AnimatedStyledMinute = animateArrowComponent({
-    positionedArrow: positionArrowComponent(
-      StyledMinute,
-      startingPositions.minute
-    ),
-    rotateAnimation: getRotateAnimation(
-      startingPositions.minute,
-      startingPositions.minute + degsPerCircle
-    ),
-    duration: durations.hour,
-  });
-  AnimatedStyledMinute.displayName = 'AnimatedStyledMinute'; // for tests
-
-  const AnimatedStyledHour = animateArrowComponent({
-    positionedArrow: positionArrowComponent(StyledHour, startingPositions.hour),
-    rotateAnimation: getRotateAnimation(
-      startingPositions.hour,
-      startingPositions.hour + degsPerCircle
-    ),
-    duration: durations.day,
-  });
-  AnimatedStyledHour.displayName = 'AnimatedStyledHour'; // for tests
-
-  return {
-    AnimatedStyledSecond,
-    AnimatedStyledMinute,
-    AnimatedStyledHour,
-  };
-};
-
 export type ClockProps = {
   secondDuration: number;
 } & IClock.Time;
@@ -130,11 +74,6 @@ export default class Clock extends React.PureComponent<ClockProps> {
     const { hour, minute, second, secondDuration } = this.props;
     const durations = getDurations(secondDuration);
     const startingPositions = timeToDegrees(hour, minute, second);
-    const {
-      AnimatedStyledSecond,
-      AnimatedStyledMinute,
-      AnimatedStyledHour,
-    } = generateAnimatedArrows(startingPositions, durations);
 
     return (
       <StyledClockWrapper>
@@ -142,9 +81,18 @@ export default class Clock extends React.PureComponent<ClockProps> {
         ms
         <div className="backdrop-outer">
           <div className="backdrop-inner">
-            <AnimatedStyledHour />
-            <AnimatedStyledMinute />
-            <AnimatedStyledSecond />
+            <HourArrow
+              position={startingPositions.hour}
+              circleDuration={durations.day}
+            />
+            <MinuteArrow
+              position={startingPositions.minute}
+              circleDuration={durations.hour}
+            />
+            <SecondArrow
+              position={startingPositions.second}
+              circleDuration={durations.minute}
+            />
           </div>
         </div>
       </StyledClockWrapper>

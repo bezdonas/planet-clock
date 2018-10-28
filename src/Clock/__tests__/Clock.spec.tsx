@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import 'jest-styled-components';
 import Clock, { getDurations, timeToDegrees } from '../Clock';
@@ -19,23 +19,16 @@ describe('Check starting arrow positions', () => {
         minute: Math.floor(Math.random() * 60),
         second: Math.floor(Math.random() * 60),
       };
-      const wrapper = mount(<Clock {...props} />);
+      const wrapper = shallow(<Clock {...props} />);
 
-      expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-        'transform',
-        `rotate(${Math.round(degsPerSec * props.second)}deg)`
+      expect(wrapper.find('SecondArrow').prop('position')).toEqual(
+        Math.round(degsPerSec * props.second)
       );
-      expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-        'transform',
-        `rotate(${Math.round(
-          degsPerMin * (props.minute + props.second / secsPerCircle)
-        )}deg)`
+      expect(wrapper.find('MinuteArrow').prop('position')).toEqual(
+        Math.round(degsPerMin * (props.minute + props.second / secsPerCircle))
       );
-      expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-        'transform',
-        `rotate(${Math.round(
-          degsPerHour * (props.hour + props.minute / minsPerCircle)
-        )}deg)`
+      expect(wrapper.find('HourArrow').prop('position')).toEqual(
+        Math.round(degsPerHour * (props.hour + props.minute / minsPerCircle))
       );
     });
   });
@@ -48,18 +41,9 @@ describe('Check starting arrow positions', () => {
     };
     const wrapper = mount(<Clock {...props} />);
 
-    expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-      'transform',
-      'rotate(96deg)'
-    );
-    expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-      'transform',
-      'rotate(134deg)'
-    );
-    expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-      'transform',
-      'rotate(71deg)'
-    );
+    expect(wrapper.find('SecondArrow').prop('position')).toEqual(96);
+    expect(wrapper.find('MinuteArrow').prop('position')).toEqual(134);
+    expect(wrapper.find('HourArrow').prop('position')).toEqual(71);
   });
 });
 
