@@ -1,121 +1,84 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import Clock from '../Clock';
-import { degPerSecond, degPerMinute, degPerHour } from '../Degrees';
 import 'jest-styled-components';
+import Clock, { getDurations, timeToDegrees } from '../Clock';
+import {
+  degsPerSec,
+  degsPerMin,
+  degsPerHour,
+  secsPerCircle,
+  minsPerCircle,
+} from '../ClockConstants';
 
 describe('Check starting arrow positions', () => {
-  it('time 3:12:46', () => {
-    const props = {
-      secondDuration: 1000,
-      hour: 3,
-      minute: 12,
-      second: 46,
-    };
-    const wrapper = mount(<Clock {...props} />);
+  it('several random time tests', () => {
+    [1, 2, 3, 4, 5].forEach(() => {
+      const props = {
+        secondDuration: 1000,
+        hour: Math.floor(Math.random() * 12),
+        minute: Math.floor(Math.random() * 60),
+        second: Math.floor(Math.random() * 60),
+      };
+      const wrapper = shallow(<Clock {...props} />);
 
-    expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerHour * props.hour}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerMinute * props.minute}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerSecond * props.second}deg)`
-    );
+      expect(wrapper.find('SecondArrow').prop('position')).toEqual(
+        Math.round(degsPerSec * props.second)
+      );
+      expect(wrapper.find('MinuteArrow').prop('position')).toEqual(
+        Math.round(degsPerMin * (props.minute + props.second / secsPerCircle))
+      );
+      expect(wrapper.find('HourArrow').prop('position')).toEqual(
+        Math.round(degsPerHour * (props.hour + props.minute / minsPerCircle))
+      );
+    });
   });
-
-  it('time 22:41:02', () => {
+  it('fixed time test 14:22:16', () => {
     const props = {
       secondDuration: 1000,
-      hour: 22,
-      minute: 41,
-      second: 2,
-    };
-    const wrapper = mount(<Clock {...props} />);
-
-    expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerHour * props.hour}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerMinute * props.minute}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerSecond * props.second}deg)`
-    );
-  });
-
-  it('time 13:22:17', () => {
-    const props = {
-      secondDuration: 1000,
-      hour: 13,
+      hour: 2,
       minute: 22,
-      second: 17,
+      second: 16,
     };
     const wrapper = mount(<Clock {...props} />);
 
-    expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerHour * props.hour}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerMinute * props.minute}deg)`
-    );
-    expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-      'transform',
-      `rotate(${degPerSecond * props.second}deg)`
-    );
+    expect(wrapper.find('SecondArrow').prop('position')).toEqual(96);
+    expect(wrapper.find('MinuteArrow').prop('position')).toEqual(134);
+    expect(wrapper.find('HourArrow').prop('position')).toEqual(71);
   });
 });
 
 describe('getDurations method', () => {
   it('returns expected data for normal secondDuration', () => {
-    const props = {
-      secondDuration: 1000,
-      hour: 0,
-      minute: 0,
-      second: 0,
-    };
-    const wrapper = shallow(<Clock {...props} />);
-    const instance = wrapper.instance() as Clock;
-
-    expect(instance.getDurations(1000)).toEqual({
-      minuteDuration: 60 * 1000,
-      hourDuration: 60 * 60 * 1000,
-      dayDuration: 60 * 60 * 12 * 1000,
+    expect(getDurations(1000)).toEqual({
+      minute: 60000,
+      hour: 3600000,
+      day: 43200000,
     });
   });
 
   it('returns expected data for unnormal secondDuration', () => {
-    const props = {
-      secondDuration: 300,
-      hour: 0,
-      minute: 0,
-      second: 0,
-    };
-    const wrapper = shallow(<Clock {...props} />);
-    const instance = wrapper.instance() as Clock;
-
-    expect(instance.getDurations(300)).toEqual({
-      minuteDuration: 60 * 300,
-      hourDuration: 60 * 60 * 300,
-      dayDuration: 60 * 60 * 12 * 300,
+    expect(getDurations(300)).toEqual({
+      minute: 18000,
+      hour: 1080000,
+      day: 12960000,
     });
   });
 });
 
-describe('Check dynamic arrow positions', () => {
-  it('stub', () => {
-    // TODO: Since animation is done inside css
-    // checking this stuff is not so trivial,
-    // have to research/come up with smth
-    expect(true).toBe(true);
+describe('timeToDegrees method', () => {
+  it('returns correct positions for 7:46:13', () => {
+    expect(timeToDegrees(7, 46, 13)).toEqual({
+      hour: 233,
+      minute: 277,
+      second: 78,
+    });
+  });
+
+  it('returns correct positions for 11:23:54', () => {
+    expect(timeToDegrees(11, 23, 54)).toEqual({
+      hour: 342,
+      minute: 143,
+      second: 324,
+    });
   });
 });
