@@ -14,3 +14,12 @@ it('has expected style rule', () => {
     'rotate(36deg)'
   );
 });
+
+it('matches snapshot', () => {
+  const props = {
+    position: 221,
+    circleDuration: 130,
+  };
+  const wrapper = mount(<SecondArrow {...props} />);
+  expect(wrapper).toMatchSnapshot();
+});
