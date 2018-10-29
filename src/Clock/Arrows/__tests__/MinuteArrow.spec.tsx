@@ -6,20 +6,13 @@ import MinuteArrow from '../MinuteArrow';
 it('has expected style rule', () => {
   const props = {
     position: 42,
-    circleDuration: 60000,
+    circleDuration: 50000,
   };
   const wrapper = mount(<MinuteArrow {...props} />);
-  expect(wrapper.find('AnimatedStyledMinute')).toHaveStyleRule(
-    'transform',
-    'rotate(42deg)'
+  const AnimatedStyledMinute = wrapper.find('AnimatedStyledMinute');
+  expect(AnimatedStyledMinute).toHaveStyleRule('transform', 'rotate(42deg)');
+  expect(AnimatedStyledMinute).toHaveStyleRule(
+    'animation',
+    'jNoktf 50000ms infinite'
   );
-});
-
-it('matches snapshot', () => {
-  const props = {
-    position: 221,
-    circleDuration: 12500,
-  };
-  const wrapper = mount(<MinuteArrow {...props} />);
-  expect(wrapper).toMatchSnapshot();
 });

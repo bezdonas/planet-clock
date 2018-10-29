@@ -6,20 +6,13 @@ import HourArrow from '../HourArrow';
 it('has expected style rule', () => {
   const props = {
     position: 176,
-    circleDuration: 60000,
+    circleDuration: 30000,
   };
   const wrapper = mount(<HourArrow {...props} />);
-  expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-    'transform',
-    'rotate(176deg)'
+  const AnimatedStyledHour = wrapper.find('AnimatedStyledHour');
+  expect(AnimatedStyledHour).toHaveStyleRule('transform', 'rotate(176deg)');
+  expect(AnimatedStyledHour).toHaveStyleRule(
+    'animation',
+    'cCwVsE 30000ms infinite'
   );
-});
-
-it('matches snapshot', () => {
-  const props = {
-    position: 135,
-    circleDuration: 300000,
-  };
-  const wrapper = mount(<HourArrow {...props} />);
-  expect(wrapper).toMatchSnapshot();
 });
