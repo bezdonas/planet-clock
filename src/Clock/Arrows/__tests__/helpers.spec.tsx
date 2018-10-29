@@ -5,10 +5,15 @@ import styled, { keyframes } from 'styled-components';
 import 'jest-styled-components';
 
 describe('positionArrowComponent method', () => {
-  it('passes rotation into styled-component', () => {
+  it('passes rotation into styled-component 1', () => {
     const StyledClass = positionArrowComponent(styled.div``, 55);
     const wrapper = mount(<StyledClass />);
     expect(wrapper).toHaveStyleRule('transform', 'rotate(55deg)');
+  });
+  it('passes rotation into styled-component 2', () => {
+    const StyledClass = positionArrowComponent(styled.div``, 132);
+    const wrapper = mount(<StyledClass />);
+    expect(wrapper).toHaveStyleRule('transform', 'rotate(132deg)');
   });
 });
 
@@ -41,6 +46,9 @@ describe('animateArrowComponent method', () => {
       duration: 50,
     });
     const wrapper = mount(<StyledClass />);
-    expect(wrapper).toHaveStyleRule('animation', 'iVXCSc 50ms infinite');
+    expect(wrapper).toHaveStyleRule(
+      'animation',
+      expect.stringContaining('50ms infinite')
+    );
   });
 });

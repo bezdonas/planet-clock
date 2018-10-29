@@ -3,23 +3,31 @@ import React from 'react';
 import 'jest-styled-components';
 import HourArrow from '../HourArrow';
 
-it('has expected style rule', () => {
-  const props = {
-    position: 176,
-    circleDuration: 60000,
-  };
-  const wrapper = mount(<HourArrow {...props} />);
-  expect(wrapper.find('AnimatedStyledHour')).toHaveStyleRule(
-    'transform',
-    'rotate(176deg)'
-  );
-});
-
-it('matches snapshot', () => {
-  const props = {
-    position: 135,
-    circleDuration: 300000,
-  };
-  const wrapper = mount(<HourArrow {...props} />);
-  expect(wrapper).toMatchSnapshot();
+describe('Check passed styles', () => {
+  it('has expected style rule 1', () => {
+    const props = {
+      position: 176,
+      circleDuration: 30000,
+    };
+    const wrapper = mount(<HourArrow {...props} />);
+    const AnimatedStyledHour = wrapper.find('AnimatedStyledHour');
+    expect(AnimatedStyledHour).toHaveStyleRule('transform', 'rotate(176deg)');
+    expect(AnimatedStyledHour).toHaveStyleRule(
+      'animation',
+      expect.stringContaining('30000ms infinite')
+    );
+  });
+  it('has expected style rule 2', () => {
+    const props = {
+      position: 132,
+      circleDuration: 214444,
+    };
+    const wrapper = mount(<HourArrow {...props} />);
+    const AnimatedStyledHour = wrapper.find('AnimatedStyledHour');
+    expect(AnimatedStyledHour).toHaveStyleRule('transform', 'rotate(132deg)');
+    expect(AnimatedStyledHour).toHaveStyleRule(
+      'animation',
+      expect.stringContaining('214444ms infinite')
+    );
+  });
 });

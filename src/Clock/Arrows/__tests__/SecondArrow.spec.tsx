@@ -3,23 +3,31 @@ import React from 'react';
 import 'jest-styled-components';
 import SecondArrow from '../SecondArrow';
 
-it('has expected style rule', () => {
-  const props = {
-    position: 36,
-    circleDuration: 60000,
-  };
-  const wrapper = mount(<SecondArrow {...props} />);
-  expect(wrapper.find('AnimatedStyledSecond')).toHaveStyleRule(
-    'transform',
-    'rotate(36deg)'
-  );
-});
-
-it('matches snapshot', () => {
-  const props = {
-    position: 221,
-    circleDuration: 130,
-  };
-  const wrapper = mount(<SecondArrow {...props} />);
-  expect(wrapper).toMatchSnapshot();
+describe('Check passed styles', () => {
+  it('has expected style rules 1', () => {
+    const props = {
+      position: 36,
+      circleDuration: 60000,
+    };
+    const wrapper = mount(<SecondArrow {...props} />);
+    const AnimatedStyledSecond = wrapper.find('AnimatedStyledSecond');
+    expect(AnimatedStyledSecond).toHaveStyleRule('transform', 'rotate(36deg)');
+    expect(AnimatedStyledSecond).toHaveStyleRule(
+      'animation',
+      expect.stringContaining('60000ms steps(60) infinite')
+    );
+  });
+  it('has expected style rules 2', () => {
+    const props = {
+      position: 480,
+      circleDuration: 543661,
+    };
+    const wrapper = mount(<SecondArrow {...props} />);
+    const AnimatedStyledSecond = wrapper.find('AnimatedStyledSecond');
+    expect(AnimatedStyledSecond).toHaveStyleRule('transform', 'rotate(480deg)');
+    expect(AnimatedStyledSecond).toHaveStyleRule(
+      'animation',
+      expect.stringContaining('543661ms steps(60) infinite')
+    );
+  });
 });
