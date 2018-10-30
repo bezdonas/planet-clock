@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { clockColor } from '../ClockConstants';
 
 export default styled.div`
+  will-change: transform;
   position: absolute;
   top: 0;
   left: 50%;
