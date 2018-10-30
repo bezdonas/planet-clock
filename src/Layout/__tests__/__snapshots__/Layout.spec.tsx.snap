@@ -31,6 +31,7 @@ ShallowWrapper {
         "isStatic": true,
         "rules": Array [
           "
+  font-family: sans-serif;
   background: rgb(0, 0, 0);
   display: grid;
   height: 100vh;
@@ -63,6 +64,7 @@ ShallowWrapper {
           "isStatic": true,
           "rules": Array [
             "
+  font-family: sans-serif;
   background: rgb(0, 0, 0);
   display: grid;
   height: 100vh;

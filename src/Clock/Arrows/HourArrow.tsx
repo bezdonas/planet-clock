@@ -4,36 +4,30 @@ import {
   getRotateAnimation,
   positionArrowComponent,
   animateArrowComponent,
-} from './helpers';
-import { clockColor, clockDiameter, degsPerCircle } from '../ClockConstants';
+} from './ArrowHelpers';
+import { clockDiameter, degsPerCircle } from '../ClockConstants';
+import Arrow from './Arrow';
+import { ArrowComponentProps } from 'types/Clock';
 
-const StyledHour = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
+const StyledHour = styled(Arrow)`
   width: 8px;
   margin-left: -4px;
   height: ${clockDiameter / 3}px;
   padding-bottom: ${clockDiameter / 3}px;
   top: ${clockDiameter / 6}px;
   :after {
-    content: '';
-    position: absolute;
-    top: 0;
     bottom: 50%;
-    left: 0;
-    right: 0;
-    background: ${clockColor};
-    border-radius: 25%;
   }
 `;
 
-export interface HourArrowProps {
+export interface ArrowComponentProps {
   position: number;
   circleDuration: number;
 }
 
-export default class HourArrow extends React.PureComponent<HourArrowProps> {
+export default class HourArrow extends React.PureComponent<
+  ArrowComponentProps
+> {
   public render() {
     const { position, circleDuration } = this.props;
     const AnimatedStyledHour = animateArrowComponent({

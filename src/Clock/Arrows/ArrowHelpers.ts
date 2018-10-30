@@ -3,7 +3,7 @@ import styled, {
   Keyframes,
   StyledComponentClass,
 } from 'styled-components';
-import { IClock } from 'src/types/Clock';
+import { AnimateArrowComponentArgs } from 'src/types/Clock';
 
 export const getRotateAnimation = (from: number, to: number): Keyframes => {
   return keyframes`
@@ -25,7 +25,7 @@ export const positionArrowComponent = (
   `;
 
 export const animateArrowComponent = (
-  settings: IClock.AnimateArrowComponentArgs
+  settings: AnimateArrowComponentArgs
 ): StyledComponentClass<{}, {}> => {
   const { positionedArrow, rotateAnimation, duration, steps } = settings;
   const stepsSetting = steps ? `steps(${steps})` : '';

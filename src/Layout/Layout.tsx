@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledLayoutWrapper = styled.div`
+  font-family: sans-serif;
   background: rgb(0, 0, 0);
   display: grid;
   height: 100vh;
