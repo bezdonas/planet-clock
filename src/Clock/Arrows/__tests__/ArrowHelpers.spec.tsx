@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { positionArrowComponent, animateArrowComponent } from '../helpers';
+import { positionArrowComponent, animateArrowComponent } from '../ArrowHelpers';
 import styled, { keyframes } from 'styled-components';
 import 'jest-styled-components';
 

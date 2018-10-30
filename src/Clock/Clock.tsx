@@ -13,7 +13,7 @@ import {
 import SecondArrow from './Arrows/SecondArrow';
 import MinuteArrow from './Arrows/MinuteArrow';
 import HourArrow from './Arrows/HourArrow';
-import { IClock } from 'src/types/Clock';
+import { Durations, Time } from 'src/types/Clock';
 
 const StyledClockWrapper = styled.div`
   margin: 20px;
@@ -42,7 +42,7 @@ const StyledClockWrapper = styled.div`
   }
 `;
 
-export const getDurations = (secondDuration: number): IClock.Durations => {
+export const getDurations = (secondDuration: number): Durations => {
   const minuteDuration: number = secondDuration * secsPerCircle;
   const hourDuration: number = minuteDuration * minsPerCircle;
   const dayDuration: number = hourDuration * hoursPerCircle;
@@ -57,7 +57,7 @@ export const timeToDegrees = (
   hour: number,
   minute: number,
   second: number
-): IClock.Time => {
+): Time => {
   return {
     second: Math.round(degsPerSec * second),
     minute: Math.round(degsPerMin * (minute + second / secsPerCircle)),
@@ -67,7 +67,7 @@ export const timeToDegrees = (
 
 export type ClockProps = {
   secondDuration: number;
-} & IClock.Time;
+} & Time;
 
 export default class Clock extends React.PureComponent<ClockProps> {
   public render() {
