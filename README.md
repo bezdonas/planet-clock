@@ -10,9 +10,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Fast start
 
-- `npm i` or `yarn` - install requirements
+- `npm install` - install requirements
 - `npm start` -  launch in developement mode
-- `npm test` -- run tests
+- `npm test` - run tests
 - `npm build` - build project
 
 # styled-components
