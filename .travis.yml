@@ -10,3 +10,16 @@ script:
   - docker-compose -f docker-compose.prod.yml build
   - docker-compose -f docker-compose.prod.yml up
   - docker-compose -f docker-compose.prod.yml run planet-clock npm run test:ci
+before_deploy: npm install now --no-save
+deploy:
+  - provider: script
+    script: now --token $NOW_TOKEN --public
+    skip_cleanup: true
+    on:
+      all_branches: true
+      master: false
+  - provider: script
+    script: now --token $NOW_TOKEN && now alias --token $NOW_TOKEN --public
+    skip_cleanup: true
+    on:
+      master: true
