@@ -13,8 +13,7 @@ deploy:
   api_key:
     secure: ${HEROKU_TOKEN}
   app: planet-clock
-  on:
-    all_branches: true
+  on: master
   skip_cleanup: true
 after_deploy:
   - docker-compose down --rmi all -v
