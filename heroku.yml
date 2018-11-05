@@ -12,6 +12,5 @@ release:
     - npm install -g serve
   image: web
 run:
-  static-serve:
-    command: serve -s build
-    image: web
+  web: serve -s build
+  image: web
