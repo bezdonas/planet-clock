@@ -10,10 +10,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Fast start
 
+## Localy
 - `npm install` - install requirements
 - `npm start` -  launch in developement mode
 - `npm test` - run tests
 - `npm build` - build project
+
+## Using docker
+- `docker-compose build` - builds image
+- `docker-compose up` - launches dev-server
+- `npm run dtest` - runs jest inside docker via `docker-compose run planet-clock npm test`
+- `npm run dcleanup` - cleans all docker stuff (containers, images, volumes) via `docker-compose down -v --rmi all`
 
 # styled-components
 
