@@ -9,10 +9,10 @@ build:
 release:
   command:
     - npm run build
-    - npm install -g serve
   image: web
 run:
   static:
     command: 
+      - npm install -g serve
       - serve -s build
     image: web
