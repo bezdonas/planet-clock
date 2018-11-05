@@ -45,9 +45,6 @@ describe('Check starting arrow positions', () => {
     expect(wrapper.find('MinuteArrow').prop('position')).toEqual(134);
     expect(wrapper.find('HourArrow').prop('position')).toEqual(71);
   });
-  it('should fail', () => {
-    expect(true).toBe(false);
-  })
 });
 
 describe('getDurations method', () => {
