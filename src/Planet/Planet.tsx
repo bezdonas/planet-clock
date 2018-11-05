@@ -1,17 +1,24 @@
 import React from 'react';
-import Clock from './Clock';
 import moment from 'moment';
 import styled from 'styled-components';
+import Clock from '../Clock/Clock';
 
-const StyledClocksContainer = styled.div`
-  align-self: center;
-  justify-self: center;
+const StyledPlanetWrapper = styled.div`
   color: white;
+  margin: 15px;
+  display: inline-block;
+  vertical-align: middle;
   h4 {
     text-align: center;
   }
 `;
-export default class ClockContainer extends React.PureComponent {
+
+export interface PlanetProps {
+  title: string;
+  secondDuration: number;
+}
+
+export default class Planet extends React.PureComponent<PlanetProps> {
   getCurrentHour = () => {
     return moment().hour();
   };
@@ -22,21 +29,17 @@ export default class ClockContainer extends React.PureComponent {
     return moment().second();
   };
   public render() {
+    const { title, secondDuration } = this.props;
     return (
-      <StyledClocksContainer>
+      <StyledPlanetWrapper>
         <Clock
-          secondDuration={1000}
+          secondDuration={secondDuration}
           hour={this.getCurrentHour()}
           minute={this.getCurrentMinute()}
           second={this.getCurrentSecond()}
         />
-        <Clock
-          secondDuration={500}
-          hour={this.getCurrentHour()}
-          minute={this.getCurrentMinute()}
-          second={this.getCurrentSecond()}
-        />
-      </StyledClocksContainer>
+        <h4>{title}</h4>
+      </StyledPlanetWrapper>
     );
   }
 }

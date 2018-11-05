@@ -16,8 +16,6 @@ import HourArrow from './Arrows/HourArrow';
 import { Durations, Time } from 'src/types/Clock';
 
 const StyledClockWrapper = styled.div`
-  margin: 20px;
-  display: inline-block;
   color: ${clockColor};
   .backdrop-outer {
     padding: 10px;
@@ -77,8 +75,6 @@ export default class Clock extends React.PureComponent<ClockProps> {
 
     return (
       <StyledClockWrapper>
-        1s = {secondDuration}
-        ms
         <div className="backdrop-outer">
           <div className="backdrop-inner">
             <HourArrow
