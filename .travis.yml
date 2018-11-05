@@ -7,13 +7,13 @@ script:
   - docker-compose build
   - docker-compose up --no-start
   - docker-compose run planet-clock npm run build
-  - docker-compose run planet-clock npm test
+  - docker-compose run planet-clock npm run test:ci
 deploy:
   provider: heroku
   api_key:
     secure: ${HEROKU_TOKEN}
   app: planet-clock
-  on: 
+  on:
     all_branches: true
   skip_cleanup: true
 after_deploy:
