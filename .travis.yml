@@ -8,11 +8,8 @@ env:
   NODE_ENV: production
 script:
   - docker-compose build
-  - docker-compose up
   - docker-compose run planet-clock npm run build
   - docker-compose run planet-clock npm test
-before_deploy:
-  - npm install -g serve
 deploy:
   provider: heroku
   api_key:
@@ -21,7 +18,5 @@ deploy:
   on: 
     all_branches: true
   skip_cleanup: true
-  run: 
-    - serve -s ./build
 after_deploy:
-  - docker-compose -f docker-compose.prod.yml down --rmi all -v
+  - docker-compose --rmi all -v
