@@ -4,15 +4,13 @@ setup:
 build:
   docker:
     web: Dockerfile
+    post: 
+      - npm run build
+      - npm install -g serve
   config:
     NODE_ENV: production
-release:
-  command:
-    - npm run build
-  image: web
 run:
   web:
     command: 
-      - npm install -g serve
       - serve -s build
     image: web
