@@ -6,14 +6,6 @@ services:
   - docker
 env:
   NODE_ENV: test
-install:
-  - docker pull busybox
-  - docker save busybox | gzip > docker/busybox.tar.gz
-cache:
-  directories:
-    - docker
-before_script:
-  - gzip -dc docker/busybox.tar.gz | docker load
 script:
   - docker-compose -f docker-compose.prod.yml build
   - docker-compose -f docker-compose.prod.yml up
