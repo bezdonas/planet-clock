@@ -9,6 +9,6 @@ build:
 release:
   command:
     - npm run build
-  image: worker
+  image: web
 run:
   web: serve ./build
