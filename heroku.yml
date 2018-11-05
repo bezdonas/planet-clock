@@ -6,10 +6,14 @@ build:
     web: Dockerfile
   config:
     NODE_ENV: production
+  post: 
+    - npm run build
 release:
   command:
-    - npm run build
     - npm install -g serve
   image: web
 run:
-  web: serve -s build
+  web:
+    command:
+      -serve -s build
+    image: web
