@@ -1,6 +1,11 @@
 setup:
   config:
     NODE_ENV: production
+build:
+  docker:
+    web: Dockerfile
+  config:
+    NODE_ENV: production
 release:
   command:
     - docker-compose -f docker-compose.prod.yml build
