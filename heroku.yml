@@ -8,9 +8,7 @@ build:
     NODE_ENV: production
 release:
   command:
-    - docker-compose -f docker-compose.prod.yml build
-    - docker-compose -f docker-compose.prod.yml up
-    - docker-compose -f docker-compose.prod.yml down --rmi all -v
+    - npm run build
   image: worker
 run:
   web: serve ./build
