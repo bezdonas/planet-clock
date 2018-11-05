@@ -1,13 +1,11 @@
 sudo: required
-language: node_js
-node_js:
-  - 10
 services:
   - docker
 env:
   NODE_ENV: production
 script:
   - docker-compose build
+  - docker-compose up --no-start
   - docker-compose run planet-clock npm run build
   - docker-compose run planet-clock npm test
 deploy:
@@ -19,4 +17,4 @@ deploy:
     all_branches: true
   skip_cleanup: true
 after_deploy:
-  - docker-compose --rmi all -v
+  - docker-compose down --rmi all -v

@@ -23,11 +23,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `npm run dcleanup` - cleans all docker stuff (containers, images, volumes) via `docker-compose down -v --rmi all`
 
 ### CI/CD with Docker
-1) `docker-compose -f docker-compose.prod.yml build` - build image for test/prod
-2) `docker-compose -f docker-compose.prod.yml up` - run `npm run build` in test/prod environment
-3) `docker-compose -f docker-compose.prod.yml run planet-clock npm run test:ci` - test builded static project
-4) Serve builded static project
-5) `docker-compose -f docker-compose.prod.yml down --rmi all -v` - clean up docker stuff after building dist
+1) `docker-compose -f docker-compose.prod.yml build` - build image for CI
+2) `docker-compose up --no-start` - run container without doing `npm start`
+3) `docker-compose run planet-clock npm run build` - run `npm run build` in CI environment
+4) `docker-compose run planet-clock npm run test:ci` - test builded static project
+5) Serve builded static project via Heroku
+6) `docker-compose down --rmi all -v` - clean up docker stuff after building dist
 
 
 # styled-components
