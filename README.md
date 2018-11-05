@@ -22,6 +22,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `npm run dtest` - runs jest inside docker via `docker-compose run planet-clock npm test`
 - `npm run dcleanup` - cleans all docker stuff (containers, images, volumes) via `docker-compose down -v --rmi all`
 
+### Test and production with Docker
+1) `docker-compose -f docker-compose.prod.yml build` - build image for test/prod
+2) `docker-compose -f docker-compose.prod.yml up` - run `npm run build` in test/prod environment
+3) `docker-compose -f docker-compose.prod.yml down --rmi all -v` - clean up docker stuff after building dist
+4) Test or serve builded static project
+
 # styled-components
 
 - https://www.styled-components.com/docs/
