@@ -1,4 +1,7 @@
 setup:
+  addons:
+    - docker-compose
+    - serve
   config:
     NODE_ENV: production
 build:
@@ -7,4 +10,4 @@ build:
     - docker-compose -f docker-compose.prod.yml up
     - docker-compose -f docker-compose.prod.yml down --rmi all -v
 run:
-  web: bundle exec puma -C config/puma.rb
+  web: serve ./build
