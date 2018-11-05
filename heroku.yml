@@ -1,18 +1,17 @@
 setup:
   config:
     NODE_ENV: production
-# build:
-#   docker:
-#     web: Dockerfile
-#     worker: worker/Dockerfile
-#   config:
-#     NODE_ENV: production
+build:
+  docker:
+    web: Dockerfile
+    worker: worker/Dockerfile
+  config:
+    NODE_ENV: production
 release:
   commands:
     - docker-compose -f docker-compose.prod.yml build
     - docker-compose -f docker-compose.prod.yml up
     - docker-compose -f docker-compose.prod.yml down --rmi all -v
-  config:
-    NODE_ENV: production
+  image: worker
 run:
   web: serve ./build
