@@ -1,0 +1,9 @@
+setup:
+  config:
+    NODE_ENV: production
+build:
+  command:
+    - docker-compose -f docker-compose.prod.yml build
+    - docker-compose -f docker-compose.prod.yml up
+run:
+  web: bundle exec puma -C config/puma.rb
