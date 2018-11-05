@@ -4,8 +4,14 @@ import styled from 'styled-components';
 const StyledLayoutWrapper = styled.div`
   font-family: sans-serif;
   background: rgb(0, 0, 0);
-  display: grid;
   height: 100vh;
+  text-align: center;
+  :after {
+    content: '';
+    height: 100vh;
+    display: inline-block;
+    vertical-align: middle;
+  }
 `;
 
 export interface LayoutProps {

@@ -33,8 +33,14 @@ ShallowWrapper {
           "
   font-family: sans-serif;
   background: rgb(0, 0, 0);
-  display: grid;
   height: 100vh;
+  text-align: center;
+  :after {
+    content: '';
+    height: 100vh;
+    display: inline-block;
+    vertical-align: middle;
+  }
 ",
         ],
       },
@@ -67,8 +73,14 @@ ShallowWrapper {
             "
   font-family: sans-serif;
   background: rgb(0, 0, 0);
-  display: grid;
   height: 100vh;
+  text-align: center;
+  :after {
+    content: '';
+    height: 100vh;
+    display: inline-block;
+    vertical-align: middle;
+  }
 ",
           ],
         },
