@@ -13,6 +13,5 @@ release:
   image: web
 run:
   static-serve:
-    command:
-      -serve -s build
+    command: serve -s build
     image: web
