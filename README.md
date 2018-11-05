@@ -23,12 +23,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `npm run dcleanup` - cleans all docker stuff (containers, images, volumes) via `docker-compose down -v --rmi all`
 
 ### Test and production with Docker
-1) `docker-compose -f docker-compose.prod.yml build` - build image for test/prod
-2) `docker-compose -f docker-compose.prod.yml up` - run `npm run build` in test/prod environment
-3) Test builded static project
-(for prod:)
-4) `docker-compose -f docker-compose.prod.yml down --rmi all -v` - clean up docker stuff after building dist
-5) Serve builded static project
+See travis.yml and heroku.yml for details
 
 # styled-components
 

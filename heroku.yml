@@ -10,3 +10,6 @@ release:
   command:
     - npm run build
   image: web
+run:
+  web:
+    - bin/boot
