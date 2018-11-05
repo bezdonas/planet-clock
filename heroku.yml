@@ -1,16 +1,17 @@
-setup:
-  config:
+--- 
+build: 
+  config: 
     NODE_ENV: production
-build:
-  docker:
-    web: Dockerfile
+  docker: 
     post: 
-      - npm run build
-      - npm install -g serve
-  config:
-    NODE_ENV: production
-run:
-  web:
+      - "npm run build"
+      - "npm install -g serve"
+    web: Dockerfile
+run: 
+  web: 
     command: 
-      - serve -s build
+      - "serve -s build"
     image: web
+setup: 
+  config: 
+    NODE_ENV: production
