@@ -6,8 +6,7 @@ services:
   - docker
 env:
   NODE_ENV: test
-  CI: true
 script:
   - docker-compose -f docker-compose.prod.yml build
   - docker-compose -f docker-compose.prod.yml up
-  - docker-compose -f docker-compose.prod.yml run planet-clock npm test
+  - docker-compose -f docker-compose.prod.yml run planet-clock npm test:ci
