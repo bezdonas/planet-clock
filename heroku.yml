@@ -9,7 +9,6 @@ build:
       - npm install -g serve
   config:
     NODE_ENV: production
-release:
 run:
   web:
     command: 
