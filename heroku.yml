@@ -1,13 +1,11 @@
 setup:
-  addons:
-    - docker-compose
-    - serve
   config:
     NODE_ENV: production
 build:
-  command:
+  pre:
     - docker-compose -f docker-compose.prod.yml build
     - docker-compose -f docker-compose.prod.yml up
+  post:
     - docker-compose -f docker-compose.prod.yml down --rmi all -v
 run:
   web: serve ./build
