@@ -70,8 +70,8 @@ ShallowWrapper {
           "
   color: white;
   margin: 15px;
-  display: inline-block;
-  vertical-align: middle;
+  align-self: center;
+  justify-self: center;
   h4 {
     text-align: center;
   }
@@ -143,8 +143,8 @@ ShallowWrapper {
             "
   color: white;
   margin: 15px;
-  display: inline-block;
-  vertical-align: middle;
+  align-self: center;
+  justify-self: center;
   h4 {
     text-align: center;
   }
