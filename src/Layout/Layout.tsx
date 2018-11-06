@@ -4,13 +4,11 @@ import styled from 'styled-components';
 const StyledLayoutWrapper = styled.div`
   font-family: sans-serif;
   background: rgb(0, 0, 0);
-  height: 100vh;
+  box-sizing: border-box;
+  min-height: 100vh;
   text-align: center;
-  :after {
-    content: '';
-    height: 100vh;
-    display: inline-block;
-    vertical-align: middle;
+  @media (min-width: 1635px) {
+    padding-top: 35vh;
   }
 `;
 
