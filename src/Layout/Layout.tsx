@@ -7,8 +7,17 @@ const StyledLayoutWrapper = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
   text-align: center;
-  @media (min-width: 1635px) {
-    padding-top: 35vh;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  @media (max-width: 850px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(8, 1fr);
   }
 `;
 

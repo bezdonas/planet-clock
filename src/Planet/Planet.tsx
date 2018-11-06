@@ -6,8 +6,8 @@ import Clock from '../Clock/Clock';
 const StyledPlanetWrapper = styled.div`
   color: white;
   margin: 15px;
-  display: inline-block;
-  vertical-align: middle;
+  align-self: center;
+  justify-self: center;
   h4 {
     text-align: center;
   }
