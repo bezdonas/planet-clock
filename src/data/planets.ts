@@ -1,4 +1,5 @@
-export default [
+import { PlanetConfig } from '../types/Planet';
+const planets: PlanetConfig[] = [
   {
     title: 'Mercury',
     secondDuration: 58666,
@@ -32,3 +33,5 @@ export default [
     secondDuration: 667,
   },
 ];
+
+export default planets;
