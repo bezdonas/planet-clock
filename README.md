@@ -23,7 +23,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `npm run dcleanup` - cleans all docker stuff (containers, images, volumes) via `docker-compose down -v --rmi all`
 
 ### CI/CD with Docker
-1) `docker-compose -f docker-compose.prod.yml build` - build image for CI
+1) `docker-compose build` - build image for CI
 2) `docker-compose up --no-start` - run container without doing `npm start`
 3) `docker-compose run planet-clock npm run build` - run `npm run build` in CI environment
 4) `docker-compose run planet-clock npm run test:ci` - test builded static project
