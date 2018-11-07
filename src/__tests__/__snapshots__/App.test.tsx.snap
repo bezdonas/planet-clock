@@ -19,34 +19,60 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Planet
+          description="It is not broken. Just veeeery slow ;)"
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={58666}
           title="Mercury"
 />,
         <Planet
+          description="It is not broken. Just veeeery slow ;)"
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={243000}
           title="Venus"
 />,
         <Planet
+          hour={12}
+          minute={35}
+          second={3}
           secondDuration={1000}
           title="Earth"
 />,
         <Planet
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={1042}
           title="Mars"
 />,
         <Planet
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={417}
           title="Jupiter"
 />,
         <Planet
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={458}
           title="Saturn"
 />,
         <Planet
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={708}
           title="Uranus"
 />,
         <Planet
+          hour={5}
+          minute={24}
+          second={12}
           secondDuration={667}
           title="Neptune"
 />,
@@ -59,6 +85,10 @@ ShallowWrapper {
         "key": "0",
         "nodeType": "class",
         "props": Object {
+          "description": "It is not broken. Just veeeery slow ;)",
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 58666,
           "title": "Mercury",
         },
@@ -71,6 +101,10 @@ ShallowWrapper {
         "key": "1",
         "nodeType": "class",
         "props": Object {
+          "description": "It is not broken. Just veeeery slow ;)",
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 243000,
           "title": "Venus",
         },
@@ -83,6 +117,9 @@ ShallowWrapper {
         "key": "2",
         "nodeType": "class",
         "props": Object {
+          "hour": 12,
+          "minute": 35,
+          "second": 3,
           "secondDuration": 1000,
           "title": "Earth",
         },
@@ -95,6 +132,9 @@ ShallowWrapper {
         "key": "3",
         "nodeType": "class",
         "props": Object {
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 1042,
           "title": "Mars",
         },
@@ -107,6 +147,9 @@ ShallowWrapper {
         "key": "4",
         "nodeType": "class",
         "props": Object {
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 417,
           "title": "Jupiter",
         },
@@ -119,6 +162,9 @@ ShallowWrapper {
         "key": "5",
         "nodeType": "class",
         "props": Object {
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 458,
           "title": "Saturn",
         },
@@ -131,6 +177,9 @@ ShallowWrapper {
         "key": "6",
         "nodeType": "class",
         "props": Object {
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 708,
           "title": "Uranus",
         },
@@ -143,6 +192,9 @@ ShallowWrapper {
         "key": "7",
         "nodeType": "class",
         "props": Object {
+          "hour": 5,
+          "minute": 24,
+          "second": 12,
           "secondDuration": 667,
           "title": "Neptune",
         },
@@ -161,34 +213,60 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Planet
+            description="It is not broken. Just veeeery slow ;)"
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={58666}
             title="Mercury"
 />,
           <Planet
+            description="It is not broken. Just veeeery slow ;)"
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={243000}
             title="Venus"
 />,
           <Planet
+            hour={12}
+            minute={35}
+            second={3}
             secondDuration={1000}
             title="Earth"
 />,
           <Planet
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={1042}
             title="Mars"
 />,
           <Planet
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={417}
             title="Jupiter"
 />,
           <Planet
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={458}
             title="Saturn"
 />,
           <Planet
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={708}
             title="Uranus"
 />,
           <Planet
+            hour={5}
+            minute={24}
+            second={12}
             secondDuration={667}
             title="Neptune"
 />,
@@ -201,6 +279,10 @@ ShallowWrapper {
           "key": "0",
           "nodeType": "class",
           "props": Object {
+            "description": "It is not broken. Just veeeery slow ;)",
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 58666,
             "title": "Mercury",
           },
@@ -213,6 +295,10 @@ ShallowWrapper {
           "key": "1",
           "nodeType": "class",
           "props": Object {
+            "description": "It is not broken. Just veeeery slow ;)",
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 243000,
             "title": "Venus",
           },
@@ -225,6 +311,9 @@ ShallowWrapper {
           "key": "2",
           "nodeType": "class",
           "props": Object {
+            "hour": 12,
+            "minute": 35,
+            "second": 3,
             "secondDuration": 1000,
             "title": "Earth",
           },
@@ -237,6 +326,9 @@ ShallowWrapper {
           "key": "3",
           "nodeType": "class",
           "props": Object {
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 1042,
             "title": "Mars",
           },
@@ -249,6 +341,9 @@ ShallowWrapper {
           "key": "4",
           "nodeType": "class",
           "props": Object {
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 417,
             "title": "Jupiter",
           },
@@ -261,6 +356,9 @@ ShallowWrapper {
           "key": "5",
           "nodeType": "class",
           "props": Object {
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 458,
             "title": "Saturn",
           },
@@ -273,6 +371,9 @@ ShallowWrapper {
           "key": "6",
           "nodeType": "class",
           "props": Object {
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 708,
             "title": "Uranus",
           },
@@ -285,6 +386,9 @@ ShallowWrapper {
           "key": "7",
           "nodeType": "class",
           "props": Object {
+            "hour": 5,
+            "minute": 24,
+            "second": 12,
             "secondDuration": 667,
             "title": "Neptune",
           },

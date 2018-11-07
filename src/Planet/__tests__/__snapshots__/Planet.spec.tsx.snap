@@ -4,6 +4,9 @@ exports[`matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Planet
+    hour={42}
+    minute={20}
+    second={12}
     secondDuration={1000}
     title="Earth"
 />,

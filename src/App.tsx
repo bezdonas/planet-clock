@@ -1,13 +1,27 @@
 import * as React from 'react';
-import planetsData from './data/planets';
+import PlanetsAPI from './data/PlanetsAPI';
+import { PlanetConfig } from './types/Planet';
 import Planet from './Planet/Planet';
 import Layout from './Layout/Layout';
 
-class App extends React.Component {
+interface AppProps {}
+
+interface AppState {
+  planets: PlanetConfig[];
+}
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = {
+      planets: PlanetsAPI.getPlanets(),
+    };
+  }
+
   public render() {
     return (
       <Layout>
-        {planetsData.map((planetData, index) => (
+        {this.state.planets.map((planetData: PlanetConfig, index: number) => (
           <Planet key={index} {...planetData} />
         ))}
       </Layout>
