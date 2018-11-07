@@ -1,7 +1,7 @@
 const PlanetsMock = [
   {
     title: 'Mercury',
-    description: "It's not broken. Just veeeery slow ;)",
+    description: 'It is not broken. Just veeeery slow ;)',
     secondDuration: 58666,
     second: 12,
     minute: 24,
@@ -9,7 +9,7 @@ const PlanetsMock = [
   },
   {
     title: 'Venus',
-    description: "It's not broken. Just veeeery slow ;)",
+    description: 'It is not broken. Just veeeery slow ;)',
     secondDuration: 243000,
     second: 12,
     minute: 24,

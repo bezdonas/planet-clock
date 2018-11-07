@@ -19,7 +19,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Planet
-          description="It's not broken. Just veeeery slow ;)"
+          description="It is not broken. Just veeeery slow ;)"
           hour={5}
           minute={24}
           second={12}
@@ -27,7 +27,7 @@ ShallowWrapper {
           title="Mercury"
 />,
         <Planet
-          description="It's not broken. Just veeeery slow ;)"
+          description="It is not broken. Just veeeery slow ;)"
           hour={5}
           minute={24}
           second={12}
@@ -85,7 +85,7 @@ ShallowWrapper {
         "key": "0",
         "nodeType": "class",
         "props": Object {
-          "description": "It's not broken. Just veeeery slow ;)",
+          "description": "It is not broken. Just veeeery slow ;)",
           "hour": 5,
           "minute": 24,
           "second": 12,
@@ -101,7 +101,7 @@ ShallowWrapper {
         "key": "1",
         "nodeType": "class",
         "props": Object {
-          "description": "It's not broken. Just veeeery slow ;)",
+          "description": "It is not broken. Just veeeery slow ;)",
           "hour": 5,
           "minute": 24,
           "second": 12,
@@ -213,7 +213,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Planet
-            description="It's not broken. Just veeeery slow ;)"
+            description="It is not broken. Just veeeery slow ;)"
             hour={5}
             minute={24}
             second={12}
@@ -221,7 +221,7 @@ ShallowWrapper {
             title="Mercury"
 />,
           <Planet
-            description="It's not broken. Just veeeery slow ;)"
+            description="It is not broken. Just veeeery slow ;)"
             hour={5}
             minute={24}
             second={12}
@@ -279,7 +279,7 @@ ShallowWrapper {
           "key": "0",
           "nodeType": "class",
           "props": Object {
-            "description": "It's not broken. Just veeeery slow ;)",
+            "description": "It is not broken. Just veeeery slow ;)",
             "hour": 5,
             "minute": 24,
             "second": 12,
@@ -295,7 +295,7 @@ ShallowWrapper {
           "key": "1",
           "nodeType": "class",
           "props": Object {
-            "description": "It's not broken. Just veeeery slow ;)",
+            "description": "It is not broken. Just veeeery slow ;)",
             "hour": 5,
             "minute": 24,
             "second": 12,
