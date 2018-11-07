@@ -13,7 +13,7 @@ const PlanetsAPI: PlanetsAPIInterface = {
   getPlanets: () => [
     {
       title: 'Mercury',
-      description: "It's not broken. Just veeeery slow ;)",
+      description: 'It is not broken. Just veeeery slow ;)',
       secondDuration: 58666,
       second: randomSecond(),
       minute: randomMinute(),
@@ -21,7 +21,7 @@ const PlanetsAPI: PlanetsAPIInterface = {
     },
     {
       title: 'Venus',
-      description: "It's not broken. Just veeeery slow ;)",
+      description: 'It is not broken. Just veeeery slow ;)',
       secondDuration: 243000,
       second: randomSecond(),
       minute: randomMinute(),
