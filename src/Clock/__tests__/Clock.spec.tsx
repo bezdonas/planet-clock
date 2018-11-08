@@ -18,6 +18,8 @@ describe('Check starting arrow positions', () => {
         hour: Math.floor(Math.random() * 12),
         minute: Math.floor(Math.random() * 60),
         second: Math.floor(Math.random() * 60),
+        background: '#fff',
+        foreground: '#000',
       };
       const wrapper = shallow(<Clock {...props} />);
 
@@ -38,6 +40,8 @@ describe('Check starting arrow positions', () => {
       hour: 2,
       minute: 22,
       second: 16,
+      background: '#fff',
+      foreground: '#000',
     };
     const wrapper = mount(<Clock {...props} />);
 

@@ -4,10 +4,11 @@ import {
   getRotateAnimation,
   positionArrowComponent,
   animateArrowComponent,
+  thematizeArrowComponent,
 } from './ArrowHelpers';
 import { clockDiameter, degsPerCircle } from '../ClockConstants';
 import Arrow from './Arrow';
-import { ArrowComponentProps } from 'types/Clock';
+import { ArrowComponentProps } from 'types';
 
 const StyledMinute = styled(Arrow)`
   width: 4px;
@@ -19,18 +20,14 @@ const StyledMinute = styled(Arrow)`
   }
 `;
 
-export interface ArrowComponentProps {
-  position: number;
-  circleDuration: number;
-}
-
 export default class MinuteArrow extends React.PureComponent<
   ArrowComponentProps
 > {
   public render() {
-    const { position, circleDuration } = this.props;
+    const { position, circleDuration, color } = this.props;
+    const ThemedMinute = thematizeArrowComponent(StyledMinute, color);
     const AnimatedStyledMinute = animateArrowComponent({
-      positionedArrow: positionArrowComponent(StyledMinute, position),
+      positionedArrow: positionArrowComponent(ThemedMinute, position),
       rotateAnimation: getRotateAnimation(position, position + degsPerCircle),
       duration: circleDuration,
     });

@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponentClass } from 'styled-components';
 import {
-  clockColor,
+  defaultBackground,
+  defaultForeground,
   clockDiameter,
   degsPerSec,
   degsPerMin,
@@ -13,13 +14,13 @@ import {
 import SecondArrow from './Arrows/SecondArrow';
 import MinuteArrow from './Arrows/MinuteArrow';
 import HourArrow from './Arrows/HourArrow';
-import { Durations, Time } from 'src/types/Clock';
+import { Durations, Time } from 'src/types';
 
 const StyledClockWrapper = styled.div`
-  color: ${clockColor};
+  color: ${defaultBackground};
   .backdrop-outer {
     padding: 10px;
-    border: 2px solid ${clockColor};
+    background: ${defaultBackground};
     border-radius: 50%;
   }
   .backdrop-inner {
@@ -35,7 +36,7 @@ const StyledClockWrapper = styled.div`
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: ${clockColor};
+      background: ${defaultForeground};
     }
   }
 `;
@@ -63,35 +64,68 @@ export const timeToDegrees = (
   };
 };
 
+export const thematizeClockWrapper = (
+  ClockWrapper: StyledComponentClass<{}, {}>,
+  background: string,
+  foreground: string
+): StyledComponentClass<{}, {}> => styled(ClockWrapper)`
+  .backdrop-outer {
+    background: ${background};
+    border-radius: 50%;
+  }
+  .backdrop-inner {
+    :after {
+      background: ${foreground};
+    }
+  }
+`;
+
 export type ClockProps = {
   secondDuration: number;
+  background: string;
+  foreground: string;
 } & Time;
 
 export default class Clock extends React.PureComponent<ClockProps> {
   public render() {
-    const { hour, minute, second, secondDuration } = this.props;
+    const {
+      hour,
+      minute,
+      second,
+      secondDuration,
+      background,
+      foreground,
+    } = this.props;
     const durations = getDurations(secondDuration);
     const startingPositions = timeToDegrees(hour, minute, second);
+    const ThemedClockWrapper = thematizeClockWrapper(
+      StyledClockWrapper,
+      background,
+      foreground
+    );
 
     return (
-      <StyledClockWrapper>
+      <ThemedClockWrapper>
         <div className="backdrop-outer">
           <div className="backdrop-inner">
             <HourArrow
               position={startingPositions.hour}
               circleDuration={durations.day}
+              color={foreground}
             />
             <MinuteArrow
               position={startingPositions.minute}
               circleDuration={durations.hour}
+              color={foreground}
             />
             <SecondArrow
               position={startingPositions.second}
               circleDuration={durations.minute}
+              color={foreground}
             />
           </div>
         </div>
-      </StyledClockWrapper>
+      </ThemedClockWrapper>
     );
   }
 }

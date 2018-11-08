@@ -8,6 +8,12 @@ ShallowWrapper {
     minute={20}
     second={12}
     secondDuration={1000}
+    theme={
+        Object {
+            "background": "#fff",
+            "foreground": "#000",
+          }
+    }
     title="Earth"
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -25,6 +31,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Clock
+          background="#fff"
+          foreground="#000"
           hour={42}
           minute={20}
           second={12}
@@ -42,6 +50,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "background": "#fff",
+          "foreground": "#000",
           "hour": 42,
           "minute": 20,
           "second": 12,
@@ -98,6 +108,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Clock
+            background="#fff"
+            foreground="#000"
             hour={42}
             minute={20}
             second={12}
@@ -115,6 +127,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "background": "#fff",
+            "foreground": "#000",
             "hour": 42,
             "minute": 20,
             "second": 12,

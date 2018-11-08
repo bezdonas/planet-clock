@@ -22,4 +22,17 @@ export interface AnimateArrowComponentArgs {
 export interface ArrowComponentProps {
   position: number;
   circleDuration: number;
+  color: string;
 }
+
+export type PlanetTheme = {
+  background: string;
+  foreground: string;
+};
+
+export type PlanetConfig = {
+  title: string;
+  description?: string;
+  theme: PlanetTheme;
+  secondDuration: number;
+} & Time;

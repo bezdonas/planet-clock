@@ -1,4 +1,4 @@
-import { PlanetConfig } from '../types/Planet';
+import { PlanetConfig } from '../types';
 import moment from 'moment';
 
 interface PlanetsAPIInterface {
@@ -18,6 +18,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#BABABA',
+        foreground: '#000',
+      },
     },
     {
       title: 'Venus',
@@ -26,6 +30,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#E18146',
+        foreground: '#000',
+      },
     },
     {
       title: 'Earth',
@@ -33,6 +41,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: moment().second(),
       minute: moment().minute(),
       hour: moment().hour(),
+      theme: {
+        background: '#467EAF',
+        foreground: '#000',
+      },
     },
     {
       title: 'Mars',
@@ -40,6 +52,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#947147',
+        foreground: '#000',
+      },
     },
     {
       title: 'Jupiter',
@@ -47,6 +63,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#9D935F',
+        foreground: '#000',
+      },
     },
     {
       title: 'Saturn',
@@ -54,6 +74,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#ECD9A8',
+        foreground: '#000',
+      },
     },
     {
       title: 'Uranus',
@@ -61,6 +85,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#B7D8DE',
+        foreground: '#000',
+      },
     },
     {
       title: 'Neptune',
@@ -68,6 +96,10 @@ const PlanetsAPI: PlanetsAPIInterface = {
       second: randomSecond(),
       minute: randomMinute(),
       hour: randomHour(),
+      theme: {
+        background: '#9789FE',
+        foreground: '#000',
+      },
     },
   ],
 };

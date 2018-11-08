@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Clock from '../Clock/Clock';
-import { Time } from 'src/types/Clock';
+import { Time } from 'src/types';
+import { PlanetTheme } from 'src/types';
 
 const StyledPlanetWrapper = styled.div`
   color: white;
@@ -15,21 +16,25 @@ const StyledPlanetWrapper = styled.div`
 
 export type PlanetProps = {
   title: string;
-  description?: string;
   secondDuration: number;
+  description?: string;
+  theme: PlanetTheme;
 } & Time;
 
 export default class Planet extends React.PureComponent<PlanetProps> {
   public render() {
-    const { title, secondDuration, hour, minute, second } = this.props;
+    const { title, secondDuration, hour, minute, second, theme } = this.props;
+    let clockProps = {
+      secondDuration,
+      hour,
+      minute,
+      second,
+      ...theme,
+    };
+
     return (
       <StyledPlanetWrapper>
-        <Clock
-          secondDuration={secondDuration}
-          hour={hour}
-          minute={minute}
-          second={second}
-        />
+        <Clock {...clockProps} />
         <h4>{title}</h4>
       </StyledPlanetWrapper>
     );

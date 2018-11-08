@@ -3,7 +3,7 @@ import styled, {
   Keyframes,
   StyledComponentClass,
 } from 'styled-components';
-import { AnimateArrowComponentArgs } from 'src/types/Clock';
+import { AnimateArrowComponentArgs } from 'src/types';
 
 export const getRotateAnimation = (from: number, to: number): Keyframes => {
   return keyframes`
@@ -33,3 +33,12 @@ export const animateArrowComponent = (
     animation: ${rotateAnimation} ${duration}ms ${stepsSetting} infinite;
   `;
 };
+
+export const thematizeArrowComponent = (
+  styledArrow: StyledComponentClass<{}, {}>,
+  color: string
+): StyledComponentClass<{}, {}> => styled(styledArrow)`
+  :after {
+    background: ${color};
+  }
+`;
