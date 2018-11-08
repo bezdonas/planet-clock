@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+import starsBackgroundDataUrl from './starsBackground';
 
 const StyledLayoutWrapper = styled.div`
   font-family: sans-serif;
-  background: rgb(0, 0, 0);
+  background: url(${starsBackgroundDataUrl}) repeat 50% 50% #000;
   box-sizing: border-box;
   min-height: 100vh;
   text-align: center;
