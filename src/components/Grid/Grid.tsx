@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import starsBackgroundDataUrl from './starsBackground';
 
-const StyledLayoutWrapper = styled.div`
+const StyledGridWrapper = styled.div`
   font-family: sans-serif;
   background: url(${starsBackgroundDataUrl}) repeat 50% 50% #000;
   box-sizing: border-box;
@@ -22,12 +22,12 @@ const StyledLayoutWrapper = styled.div`
   }
 `;
 
-export interface LayoutProps {
+export interface GridProps {
   children: ReactNode;
 }
 
-export default class Layout extends React.PureComponent<LayoutProps> {
+export default class Grid extends React.PureComponent<GridProps> {
   public render() {
-    return <StyledLayoutWrapper>{this.props.children}</StyledLayoutWrapper>;
+    return <StyledGridWrapper>{this.props.children}</StyledGridWrapper>;
   }
 }

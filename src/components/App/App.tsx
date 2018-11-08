@@ -1,8 +1,8 @@
 import * as React from 'react';
-import PlanetsAPI from './data/PlanetsAPI';
-import { PlanetConfig } from './types';
-import Planet from './Planet/Planet';
-import Layout from './Layout/Layout';
+import PlanetsAPI from '../../data/PlanetsAPI';
+import { PlanetConfig } from 'types';
+import Planet from '../Planet/Planet';
+import Grid from '../Grid/Grid';
 
 interface AppProps {}
 
@@ -20,11 +20,11 @@ class App extends React.Component<AppProps, AppState> {
 
   public render() {
     return (
-      <Layout>
+      <Grid>
         {this.state.planets.map((planetData: PlanetConfig, index: number) => (
           <Planet key={index} {...planetData} />
         ))}
-      </Layout>
+      </Grid>
     );
   }
 }
