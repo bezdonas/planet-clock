@@ -9,6 +9,10 @@ it('matches snapshot', () => {
     minute: 20,
     hour: 42,
     second: 12,
+    theme: {
+      background: '#fff',
+      foreground: '#000',
+    },
   };
 
   expect(shallow(<Planet {...props} />)).toMatchSnapshot();

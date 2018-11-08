@@ -8,6 +8,7 @@ describe('Check passed styles', () => {
     const props = {
       position: 176,
       circleDuration: 30000,
+      color: '#fff',
     };
     const wrapper = mount(<HourArrow {...props} />);
     const AnimatedStyledHour = wrapper.find('AnimatedStyledHour');
@@ -21,6 +22,7 @@ describe('Check passed styles', () => {
     const props = {
       position: 132,
       circleDuration: 214444,
+      color: '#fff',
     };
     const wrapper = mount(<HourArrow {...props} />);
     const AnimatedStyledHour = wrapper.find('AnimatedStyledHour');

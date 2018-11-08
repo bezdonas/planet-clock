@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PlanetsAPI from './data/PlanetsAPI';
-import { PlanetConfig } from './types/Planet';
+import { PlanetConfig } from './types';
 import Planet from './Planet/Planet';
 import Layout from './Layout/Layout';
 

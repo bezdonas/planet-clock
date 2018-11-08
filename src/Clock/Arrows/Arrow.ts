@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { clockColor } from '../ClockConstants';
+import { defaultForeground } from '../ClockConstants';
 
 export default styled.div`
   will-change: transform;
@@ -12,7 +12,7 @@ export default styled.div`
     top: 0;
     left: 0;
     right: 0;
-    background: ${clockColor};
+    background: ${defaultForeground};
     border-radius: 25%;
   }
 `;

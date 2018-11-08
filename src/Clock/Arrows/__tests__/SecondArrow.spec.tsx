@@ -8,6 +8,7 @@ describe('Check passed styles', () => {
     const props = {
       position: 36,
       circleDuration: 60000,
+      color: '#fff',
     };
     const wrapper = mount(<SecondArrow {...props} />);
     const AnimatedStyledSecond = wrapper.find('AnimatedStyledSecond');
@@ -21,6 +22,7 @@ describe('Check passed styles', () => {
     const props = {
       position: 480,
       circleDuration: 543661,
+      color: '#fff',
     };
     const wrapper = mount(<SecondArrow {...props} />);
     const AnimatedStyledSecond = wrapper.find('AnimatedStyledSecond');
