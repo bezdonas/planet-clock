@@ -3,9 +3,9 @@
 exports[`Check snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Layout>
+  Symbol(enzyme.__unrendered__): <Grid>
     Hello world!
-</Layout>,
+</Grid>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
